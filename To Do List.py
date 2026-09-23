@@ -21,15 +21,26 @@ def todo_remove():
     print(f"You have removed the item {task_to_remove}")
     print(todoList)
 
+def todo_edit():
+    task_to_edit = input("Enter the task you want to edit: ")
+    if task_to_edit in todoList:
+        index = todoList.index(task_to_edit)
+        new_value = input(f"What should replace '{task_to_edit}'?: ")
+        todoList[index] = new_value
+        print(f"\nUpdated list: {todoList}")
+    else:
+        print(f"\n'{task_to_edit}' is not found in the list.")
+
 def main_menu():
     while True:
         print("\n===== MAIN MENU =====")
         print("1. Add to your To Do List")
         print("2. Remove from your To Do List")
         print("3. Show my list")
-        print("4. Exit")
+        print("4. Edit your list")
+        print("5. Exit")
 
-        choice = input("Enter your choice (1-3): ").strip()
+        choice = input("Enter your choice (1-5): ").strip()
 
         if choice == '1':
             todo_input()
@@ -38,6 +49,8 @@ def main_menu():
         elif choice == '3':
             print(todoList)
         elif choice == '4':
+            todo_edit()
+        elif choice == '5':
             print("You are leaving, goodbye!")
             break
         else:
