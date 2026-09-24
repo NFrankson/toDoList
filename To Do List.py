@@ -1,6 +1,19 @@
+from tkinter import *
 
+
+root = Tk()
 todoList = []
 maxLengthList = 6
+
+# root window title and dimension
+root.title("To Do List by Nik F")
+root.geometry('350x200')
+
+menu = Menu(root)
+item = Menu(menu)
+item.add_command(label='New')
+menu.add_cascade(label='File', menu=item)
+root.config(menu=menu)
 
 
 def todo_input():
