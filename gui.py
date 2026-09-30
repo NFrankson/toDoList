@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.ttk import *
 
+list = []
 
 def button_clicked():
     print("Button clicked!")
@@ -8,15 +9,39 @@ def button_clicked():
 def exit():
     print("You are leaving! Goodbye!")
     
-def open_new_window():
+def add_to_list_window():
     new_window = tk.Toplevel(root)
     new_window.title("Add to the list")
-    new_window.geometry("320x200")
+    new_window.geometry("320x275")
 
-    label = tk.Label(new_window, text="This is a new window!")
+    label = tk.Label(new_window, text="Please add to your list")
     label.pack(pady=20)
+
+    for i in range(5):
+        entry = tk.Entry(new_window)
+        entry.pack(pady=5)
+        list.append(entry)
+
+    btn = tk.Button(new_window, text="Submit", command=read_inputs)
+    btn.pack()
+
+def show_my_list():
+    my_list_window = tk.Toplevel(root)
+    my_list_window.title("This is your list")
+    my_list_window.geometry("320x275")
+
+    label = tk.Label(my_list_window, print(list))
+    label.pack(pady=20)
+
     
 root = tk.Tk()
+
+
+def read_inputs():
+    data = [e.get() for e in list]
+    print("User inputs:", data)
+
+
 
 #Title
 root.title("Nik's To Do List")
@@ -24,7 +49,7 @@ root.title("Nik's To Do List")
 # Creating a button with specified options
 button = tk.Button(root, 
                    text="Add to your list", 
-                   command=open_new_window,
+                   command=add_to_list_window,
                    activebackground="blue", 
                    activeforeground="white",
                    anchor="center",
@@ -68,7 +93,7 @@ button1 = tk.Button(root,
                    wraplength=100)
 button2 = tk.Button(root, 
                    text="Show your list", 
-                   command=button_clicked,
+                   command=show_my_list,
                    activebackground="blue", 
                    activeforeground="white",
                    anchor="center",
